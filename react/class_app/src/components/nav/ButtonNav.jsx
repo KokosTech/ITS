@@ -23,7 +23,7 @@ const ButtonNav = ({ current, size, setPages, disabled }) => {
     }
   };
   return (
-    <div className="button-nav font-black">
+    <div className="button-nav font-black pb-5">
       <Button 
         name="<" 
         handleClick={handlePrev} 
