@@ -1,6 +1,6 @@
 import Button from "./Button";
 
-const ButtonNav = ({ current, size, setPages }) => {
+const ButtonNav = ({ current, size, setPages, disabled }) => {
   const handlePrev = () => {
     if (current > 0) {
       setPages((prev) => {
@@ -27,7 +27,7 @@ const ButtonNav = ({ current, size, setPages }) => {
       <Button 
         name="<" 
         handleClick={handlePrev} 
-        disabled={!(current > 0)} 
+        disabled={!(current > 0) || disabled} 
       />
 
       {current + 1} / {size}
@@ -35,7 +35,7 @@ const ButtonNav = ({ current, size, setPages }) => {
       <Button
         name=">"
         handleClick={handleNext}
-        disabled={!(current < size - 1)}
+        disabled={!(current < size - 1) || disabled}
       />
     </div>
   );

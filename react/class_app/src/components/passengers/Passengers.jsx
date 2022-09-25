@@ -1,5 +1,5 @@
 const Passengers = ({ passengers }) => (
-  <div className="flex flex-col w-96 max-w-sm space-y-2">
+  <div className="flex flex-col sm:w-96 max-w-sm p-2 w-full space-y-2">
     {passengers?.map((passenger) => {
       return (
         <div
@@ -8,7 +8,7 @@ const Passengers = ({ passengers }) => (
         >
           <p className="text-xl font-bold">{passenger?.name}</p>
           <p className="bg-slate-700 w-12 h-10 p-2 text-right flex items-center justify-center rounded-lg font-black">
-            {passenger?.trips}
+            {passenger?.trips || "-"}
           </p>
         </div>
       );

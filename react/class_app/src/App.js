@@ -14,6 +14,8 @@ const App = () => {
     data: [],
   });
 
+  const isLoading = () => pages.data && pages.data[pages.current] === undefined;
+
   useEffect(() => {
     if (pages.data[pages.current] === undefined) {
       axios
@@ -51,16 +53,18 @@ const App = () => {
   if (!pages.data.length) return <Loading />;
 
   return (
-    <div className="App h-screen w-screen flex flex-col items-center space-y-5 bg-black text-white">
+    <div className="App min-h-screen w-screen flex flex-col items-center space-y-5 bg-black text-white">
       <PassengersContainer
         passengers={pages.data}
         current={pages.current}
         limit={PAGE_LIMIT}
+        isLoading={isLoading()}
       />
       <ButtonNav
         current={pages.current}
         size={pages.size}
         setPages={setPages}
+        disabled={isLoading()}
       />
     </div>
   );
