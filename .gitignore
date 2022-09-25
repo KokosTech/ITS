@@ -1,2 +1,15 @@
 .DS_Store
+.vscode
+*.exe
+*.out
+main
 
+base_c
+c_sharp
+db
+finals
+html_css
+IT_Step_Angular
+oops
+jquery
+oops_ads
