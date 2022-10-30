@@ -1,0 +1,1 @@
+console.log('Message logged from JS file');

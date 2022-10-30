@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>js clock</title>
+</head>
+<body>
+    <div id="clock"></div>
+
+    <script>
+        const checkTime = (i) => (i < 10) ? '0' + i : i;
+
+        const clock = () => {
+            const today = new Date();
+            let h = today.getHours();
+            let m = today.getMinutes();
+            let s = today.getSeconds();
+            
+            h = checkTime(h);
+            m = checkTime(m);
+            s = checkTime(s);
+
+            let time = h + ":" + m + ":" + s;
+
+            document.getElementById('clock').innerHTML = time;
+            setTimeout(clock, 500);
+        }
+
+        clock();
+    </script>
+</body>
+</html>

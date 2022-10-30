@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready( () =>{
+            $( "#circle_container" ).click(() => {
+                $( "#slide_wrapper" ).animate({
+                    justifyContent: 'center'
+                }, 5000, () => {
+                    // Animation complete.
+                });
+            });
+    });
+    </script>
+    <style>
+        #slide_wrapper{
+            width: 40%;
+            height: 150px;
+            margin: 0 auto;
+            position: relative;
+            background-color: antiquewhite;
+            display: flex;
+        }
+
+        #circle_container{
+            height: 100%;
+            aspect-ratio: 1;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div id="slide_wrapper">
+        <div id="circle_container"></div>
+    </div>
+</body>
+</html>
