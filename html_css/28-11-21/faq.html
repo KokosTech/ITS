@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ</title>
+    <link rel="stylesheet" href="faq.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div id="faq-container">
+        <div class="faq-q">
+            <h2 class="q">Is the Crypto.com Visa Card a credit or debit card?</h2>
+            <p class="more-info">The Crypto.com Visa Card is a prepaid card. Broadly speaking, prepaid cards are the same as debit cards. The difference is that debit cards are linked to your bank account, but prepaid cards need to be topped up. In our case, you can top up using bank account transfers, other credit/debit cards, or cryptocurrency.</p>
+        </div>
+        <div class="faq-q">
+            <h2 class="q">How do I apply for a Crypto.com Visa Card?</h2>
+            <p class="more-info">
+                You need to stake CRO tokens for a period of 180 days to apply for a Crypto.com Visa Card. 
+                <br>
+                To do so, first sign up for a Crypto.com App account and complete our KYC verification. Next, purchase CRO tokens and deposit them into your Crypto Wallet in the App. If you buy CRO directly in the App, then no action is required. The amount of CRO depends on the card tier you’re applying for.
+                <br>
+                Finally, go to the ‘Card’ tab in the App, select your desired Crypto.com Visa Card, tap the ‘Stake CRO’ button, and follow the on-screen instructions. Now, all you need to do is wait for us to notify you when your card has shipped!
+            </p>
+        </div>
+        <div class="faq-q">
+            <h2 class="q">How do I redeem CRO rewards and purchase rebates?</h2>
+            <p class="more-info">All card rewards are paid in CRO and deposited into your Crypto Wallet in the Crypto.com App. CRO Rewards are instantly reflected with each eligible transaction. Purchase rebates are reimbursed to the USD equivalent, and the rebate cap is reset on the first day of each month. </p>
+        </div>
+        <div class="faq-q">
+            <h2 class="q">How do I top-up my card?</h2>
+            <p class="more-info">You can top up your card using your Fiat Wallet, Crypto Wallet, or credit/debit card in the Crypto.com App. Go to the ‘Card’ tab, tap ‘Top Up’, and select your preferred method. Please visit our Help Centre for more information about how to set up your Fiat Wallet.</p>
+        </div>
+        <div class="faq-q">
+            <h2 class="q">Which exchange rate will you use?</h2>
+            <p class="more-info">We have competitive exchange rates for both fiat and cryptocurrencies. The exact rates depend on your jurisdiction and card tier. We will provide all these details in the Crypto.com Visa Card Terms and Conditions when you apply for your card.</p>
+        </div>
+        <div class="faq-q">
+            <h2 class="q">Are there any fees I should be aware of?</h2>
+            <p class="more-info">Information about fees and limits (i.e. free ATM withdrawals, interbank exchange rates, top-ups, etc.) can be found in the ‘Fees & Limits’ section under ‘Settings’ in the Crypto.com App. Fees vary by card tier, so be sure you’re checking the correct one.</p>
+        </div>
+    </div>
+    <script>
+        $('.faq-q').click(function(){
+            $('.more-info').slideUp();
+            $(this).children('.more-info').slideToggle();
+        });
+    </script>
+</body>
+</html>

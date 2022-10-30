@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+
+html, body{
+    background: #B993D6;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #8CA6DB, #B993D6);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #8CA6DB, #B993D6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    margin: 0;
+    height: 100vh;
+}
+
+.container-wrapper{
+    height: 100vh;
+}
+
+.container-wrapper, .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.personal-info{
+    display: flex;
+}
+
+.input-wrapper{
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+    width: 50%;
+}
+
+.input-wrapper > label{
+    margin: 5px;
+    font-weight: 600;
+}
+
+.input-field{
+    background: none;
+    padding: 10px;
+    border-radius: 7px;
+    box-sizing: border-box;
+    border: 2px solid rgba(255, 255, 255, 0.459);
+    color: #fff;
+
+    transition: 500ms ease;
+}
+
+.input-field:focus{
+    outline: none;
+    transition: 500ms ease;
+    border-color: #fff;
+}
+
+textarea.input-field{
+    width: 500px;
+    height: 150px;
+}
+
+.input-button{
+    width: fit-content;
+    margin: 10px;
+    margin-left: 0;
+
+    background: #fff;
+    border: none;
+    padding: 17px;
+    border-radius: 7px;
+    cursor: pointer;
+
+    color: #000;
+    letter-spacing: 4px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+
+    transition: 500ms ease;
+}
+
+.input-button:hover{
+    transition: 500ms ease;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.vertical{
+    width: 3px;
+    border-radius: 7px;
+    margin: 25px;
+    height: 400px;
+    background: rgba(255, 255, 255, 0.459);
+}
+
+.social-link{
+    display: flex;
+    flex-direction: row-reverse;
+    text-align: left;
+    align-items: center;
+    justify-content: flex-end;
+    margin-bottom: 25px;
+}
+
+ion-icon{
+    font-size: 30px;
+    margin-right: 10px;
+    border-radius: 7px;
+}
+
+.social-link > a{
+    color: #fff;
+    text-decoration: none;
+}
