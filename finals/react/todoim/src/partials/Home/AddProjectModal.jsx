@@ -13,7 +13,6 @@ const AddProjectModal = ({ isOpen, onClose }) => {
   const [project, setProject] = useState(PROJECT_TEMPLATE);
   const { error, validateName, validateDescription, setAll, reset } =
     useError();
-
   const { addProject } = useProject();
 
   const handleChange = (e) => {
@@ -24,7 +23,7 @@ const AddProjectModal = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (error.name === null && error.description === null) setAll();
+    if (error.name === null || error.description === null) setAll();
 
     if (error.name === false && !error.description === false) {
       setProject({

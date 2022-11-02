@@ -20,7 +20,7 @@ const CreateSubtask = ({ task, setTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (error.name === null && error.description === null) setAll();
+    if (error.name === null || error.description === null) setAll();
 
     if (error.name === false && error.description === false) {
       setTask({

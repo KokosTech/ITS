@@ -8,7 +8,6 @@ export const ProjectProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const addProject = (project) => {
-    console.log("OPA", project);
     setProjects([...projects, project]);
   };
 
@@ -59,7 +58,6 @@ export const ProjectProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    console.log("projects", projects);
     if (projects.length > 0)
       localStorage.setItem("projects", JSON.stringify(projects));
   }, [projects]);

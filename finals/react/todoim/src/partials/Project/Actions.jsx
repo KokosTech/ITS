@@ -8,7 +8,6 @@ const Actions = ({ project, setProject }) => {
   const { removeProject } = useProject();
 
   const handleComplete = () => {
-    console.log("complete");
     setProject({ ...project, completed: !project.completed });
   };
 

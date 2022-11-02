@@ -9,8 +9,6 @@ const Radio = ({
   max,
   iText,
   required,
-  error,
-  cClassName,
   className,
 }) => {
   return (

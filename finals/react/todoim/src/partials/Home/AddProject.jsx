@@ -6,6 +6,7 @@ import CreateButton from "../../components/Buttons/Create";
 // button to open modal
 const AddProject = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
 

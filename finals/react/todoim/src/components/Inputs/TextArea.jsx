@@ -12,7 +12,6 @@ const TextArea = ({
   maxRows,
   required,
   error,
-  cClassName,
   className,
 }) => {
   return (

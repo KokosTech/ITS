@@ -10,8 +10,8 @@ import ProjectPartial from "../partials/Project/Projects";
 
 import Button from "../components/Button";
 
-import ProjectNotFound from "../error/ProjectNotFound";
-import UnknownError from "../error/Unknown";
+import ProjectNotFound from "../errors/ProjectNotFound";
+import UnknownError from "../errors/Unknown";
 
 const Project = () => {
   const { id } = useParams();
@@ -30,18 +30,15 @@ const Project = () => {
   useEffect(() => {
     if ((!loading || !error) && id) {
       setProject(getProject(parseInt(id)));
-      console.log("TEST");
     }
   }, [id, loading, error]);
 
   useEffect(() => {
     if (task.id !== 0) handleUpdate();
-    console.log("TEST")
   }, [task]);
 
   useEffect(() => {
     if (project) updateProject(project.id, project);
-    console.log("TEST");
   }, [project]);
 
   if (loading || project === undefined) return <div>Loading...</div>;
