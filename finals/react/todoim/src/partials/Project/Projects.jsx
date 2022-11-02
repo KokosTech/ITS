@@ -5,7 +5,7 @@ import Actions from "./Actions";
 const ProjectPartial = ({ project, setProject }) => {
   return (
     <div className="w-full space-y-4">
-      <Main {...project} />
+      <Main project={project} setProject={setProject} />
       <Info {...project} />
       <Actions project={project} setProject={setProject} />
     </div>

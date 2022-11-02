@@ -8,7 +8,7 @@ const SubtaskContainer = ({ task, project, setTask, setProject }) => {
       <ul className="space-y-2">
         {project.tasks.length > 0 &&
           project.tasks.map((task) => (
-            <Subtask task={task} project={project} setProject={setProject} />
+            <Subtask key={task.id} task={task} project={project} setProject={setProject} />
           ))}
         <CreateSubtask task={task} setTask={setTask} />
       </ul>

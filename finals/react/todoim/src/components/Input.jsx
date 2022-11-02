@@ -11,11 +11,12 @@ const Input = ({
   onChange,
   text,
   placeholder,
-  rows,
+  minRows,
+  maxRows,
   min,
   max,
   iText,
-  requreed,
+  required,
   error,
   cClassName,
   className,
@@ -33,7 +34,13 @@ const Input = ({
         onChange({ target: { name, value: getDate() } });
       }
     }
-  }, []);
+
+    if (type === "radio") {
+      if (!value) {
+        onChange({ target: { name, value: "1" } });
+      }
+    }
+  }, [name, onChange, type, value]);
 
   if (type === "textarea")
     return (
@@ -46,8 +53,9 @@ const Input = ({
           onChange,
           text,
           placeholder,
-          rows,
-          requreed,
+          minRows,
+          maxRows,
+          required,
           error,
           cClassName,
           className,
@@ -67,7 +75,7 @@ const Input = ({
           min,
           max,
           iText,
-          requreed,
+          required,
           error,
           cClassName,
           className,
@@ -89,11 +97,10 @@ const Input = ({
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        required={requreed}
+        required={required}
         className={className}
-        border
-        border-slate-800
       />
+      {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>
   );
 };

@@ -7,9 +7,13 @@ import getDate from "../../utils/getDate";
 
 import Input from "../../components/Input";
 import Button from "../../components/Button";
+import useError from "../../hooks/useError";
 
 const AddProjectModal = ({ isOpen, onClose }) => {
   const [project, setProject] = useState(PROJECT_TEMPLATE);
+  const { error, validateName, validateDescription, setAll, reset } =
+    useError();
+
   const { addProject } = useProject();
 
   const handleChange = (e) => {
@@ -20,13 +24,39 @@ const AddProjectModal = ({ isOpen, onClose }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (project.name === "") return;
-    if (project.description === "") return;
-    if (project.priority === "") return;
-    if (project.dueDate === "") return;
+    if (error.name === null && error.description === null) setAll();
 
-    setProject({ ...project, id: Date.now(), created: getDate() });
+    if (error.name === false && !error.description === false) {
+      setProject({
+        ...project,
+        id: Date.now(),
+        priority: project.priority,
+        created: getDate(),
+      });
+      onClose();
+    }
   };
+
+  useEffect(() => {
+    if (isOpen) {
+      setProject(PROJECT_TEMPLATE);
+      reset();
+    }
+  }, [isOpen]);
+
+  useEffect(() => {
+    if (error.name === null && project.name.length > 0)
+      validateName(project.name);
+
+    if (error.name !== null) validateName(project.name);
+  }, [error.name, project.name]);
+
+  useEffect(() => {
+    if (error.description === null && project.description.length > 0)
+      validateDescription(project.description);
+
+    if (error.description !== null) validateDescription(project.description);
+  }, [project.description, error]);
 
   useEffect(() => {
     if (project.id !== 0) {
@@ -56,6 +86,7 @@ const AddProjectModal = ({ isOpen, onClose }) => {
             onChange={handleChange}
             placeholder="Project Name"
             required
+            error={error.name}
             className={`w-full bg-transparent p-2 pb-1 rounded-none
                         border-b border-slate-700 hover:border-slate-600 focus:border-slate-600 
                        text-white text-xl font-bold line-clamp-5 appearance-none focus:outline-none focus:ring-none resize-none scroll-auto `}
@@ -67,8 +98,9 @@ const AddProjectModal = ({ isOpen, onClose }) => {
             value={project.description}
             onChange={handleChange}
             placeholder={"Description"}
-            rows={6}
-            requreed={true}
+            minRows={6}
+            required={true}
+            error={error.description}
             className={`w-full bg-transparent rounded-xl p-2
                         border border-slate-700 hover:border-slate-600 focus:border-slate-600 
                        text-neutral-300 line-clamp-5 appearance-none focus:outline-none focus:ring-none resize-none scroll-auto`}
@@ -81,14 +113,19 @@ const AddProjectModal = ({ isOpen, onClose }) => {
               value={project.priority}
               onChange={handleChange}
               text="Priority"
-              requreed={true}
+              required={true}
               min={1}
               max={3}
               iText={[
                 <FaFire className="text-green-700" />,
-                Array.from({ length: 2 }, (_, index) => <FaFire key={index} className="text-orange-700" />),
-                Array.from({ length: 3 }, (_, index) => <FaFire key={index} className="text-red-700" />),
+                Array.from({ length: 2 }, (_, index) => (
+                  <FaFire key={index} className="text-orange-700" />
+                )),
+                Array.from({ length: 3 }, (_, index) => (
+                  <FaFire key={index} className="text-red-700" />
+                )),
               ]}
+              className={`fixed opacity-0 w-0 h-0`}
             />
             <Input
               type="date"
@@ -97,12 +134,12 @@ const AddProjectModal = ({ isOpen, onClose }) => {
               value={project.dueDate}
               onChange={handleChange}
               text="Due Date"
-              requreed={true}
+              required={true}
               className="bg-transparent py-2 px-4 rounded-full border border-slate-800 hover:border-slate-700 focus:border-slate-700 focus:outline-none focus:ring-none"
             />
           </div>
 
-          <div className="flex justify-end space-x-4">
+          <div className="flex justify-between space-x-4">
             <Button
               text="Add project"
               onClick={handleSubmit}

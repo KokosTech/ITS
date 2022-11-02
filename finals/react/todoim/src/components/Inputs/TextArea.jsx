@@ -1,3 +1,5 @@
+import TextareaAutosize from "react-textarea-autosize";
+
 const TextArea = ({
   type,
   name,
@@ -6,8 +8,9 @@ const TextArea = ({
   onChange,
   text,
   placeholder,
-  rows,
-  requreed,
+  minRows,
+  maxRows,
+  required,
   error,
   cClassName,
   className,
@@ -19,17 +22,20 @@ const TextArea = ({
           {text}
         </label>
       )}
-      <textarea
+      <TextareaAutosize
         type={type}
         name={name}
         id={id}
         value={value}
         onChange={onChange}
         placeholder={placeholder}
-        rows={rows}
-        required={requreed}
+        minRows={minRows}
+        maxRows={maxRows}
+        required={required}
         className={className}
+        cacheMeasurements={true}
       />
+      {error && <span className="text-red-500 text-sm">{error}</span>}
     </div>
   );
 };

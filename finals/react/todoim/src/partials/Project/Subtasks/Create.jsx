@@ -1,3 +1,6 @@
+import { useEffect } from "react";
+import useError from "../../../hooks/useError";
+
 import Input from "../../../components/Input";
 import CompleteButton from "../../../components/Buttons/Complete";
 import CreateButton from "../../../components/Buttons/Create";
@@ -6,6 +9,9 @@ const INPUT_CLASS = `
 bg-transparent text-xl font-bold line-clamp-2 appearance-none w-full focus:outline-none focus:ring-none`;
 
 const CreateSubtask = ({ task, setTask }) => {
+  const { error, validateName, validateDescription, setAll, reset } =
+    useError();
+
   const handleChanges = (e) => {
     const { name, value } = e.target;
     setTask({ ...task, [name]: value });
@@ -14,11 +20,29 @@ const CreateSubtask = ({ task, setTask }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (task.name === "") return;
-    if (task.description === "") return;
+    if (error.name === null && error.description === null) setAll();
 
-    setTask({ ...task, id: Date.now() });
+    if (error.name === false && error.description === false) {
+      setTask({
+        ...task,
+        id: Date.now(),
+      });
+      reset();
+    }
   };
+
+  useEffect(() => {
+    if (error.name === null && task.name.length > 0) validateName(task.name);
+
+    if (error.name !== null) validateName(task.name);
+  }, [error.name, task.name]);
+
+  useEffect(() => {
+    if (error.description === null && task.description.length > 0)
+      validateDescription(task.description);
+
+    if (error.description !== null) validateDescription(task.description);
+  }, [task.description, error]);
 
   return (
     <form
@@ -36,6 +60,7 @@ const CreateSubtask = ({ task, setTask }) => {
             onChange={handleChanges}
             placeholder="New subtask"
             required={true}
+            error={error.name}
             className={INPUT_CLASS}
           />
           <Input
@@ -44,10 +69,11 @@ const CreateSubtask = ({ task, setTask }) => {
             id="description"
             value={task.description}
             onChange={handleChanges}
-            text="description"
             placeholder="description"
-            rows={2}
+            minRows={2}
+            maxRows={3}
             required={true}
+            error={error.description}
             className="w-full bg-transparent text-neutral-300 text-sm line-clamp-3 appearance-none focus:outline-none focus:ring-none resize-none scroll-auto"
           />
         </div>

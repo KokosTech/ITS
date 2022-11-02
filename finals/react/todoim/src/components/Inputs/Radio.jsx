@@ -8,7 +8,7 @@ const Radio = ({
   min,
   max,
   iText,
-  requreed,
+  required,
   error,
   cClassName,
   className,
@@ -23,13 +23,13 @@ const Radio = ({
           <label
             htmlFor={id + index}
             key={index}
-            className={`px-3 py-3 text-neutral-400 flex items-center space-x-2 border border-slate-800 rounded-full ${
+            className={`px-3 py-3 text-neutral-400 flex items-center border border-slate-800 hover:border-slate-700 rounded-full cursor-pointer ${
               value
                 ? parseInt(value) === min + index
-                  ? "bg-slate-800 border-slate-700 text-white"
+                  ? "bg-slate-800 border-slate-700 hover:border-slate-600 text-white"
                   : ""
                 : index === min - 1
-                ? "bg-slate-800 border-slate-700 text-white"
+                ? "bg-slate-800 border-slate-700 hover:border-slate-600 text-white"
                 : ""
             }`}
           >
@@ -40,14 +40,14 @@ const Radio = ({
               value={min + index}
               onChange={onChange}
               className={className}
-              requreed={requreed}
+              required={required}
               checked={
                 value ? parseInt(value) === min + index : index === min - 1
               }
             />
-            {console.log(value, min + index, value === min + index)}
-
-            {iText[index]}
+            <div className="flex items-center justify-center">
+              {iText[index]}
+            </div>
           </label>
         ))}
       </div>

@@ -8,6 +8,7 @@ export const ProjectProvider = ({ children }) => {
   const [error, setError] = useState(null);
 
   const addProject = (project) => {
+    console.log("OPA", project);
     setProjects([...projects, project]);
   };
 

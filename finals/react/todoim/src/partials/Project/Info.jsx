@@ -14,8 +14,8 @@ const Info = ({ completed, priority, created, dueDate }) => {
           <p>{completed ? "completed" : "not completed"}</p>
         </div>
         <div className="flex items-center justify-center space-x-1">
-          {Array.from({ length: priority }, (_, index) => (
-            <FaFire />
+          {Array.from({ length: parseInt(priority) }, (_, index) => (
+            <FaFire key={index} />
           ))}
         </div>
       </div>
