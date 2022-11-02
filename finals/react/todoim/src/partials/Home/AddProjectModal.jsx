@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { FaFire } from "react-icons/fa";
 import { useProject } from "../../context/projectContext";
 
 import { PROJECT_TEMPLATE } from "../../constants/dataTemplates";
@@ -38,14 +39,14 @@ const AddProjectModal = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10"
+      className="fixed top-0 left-0 p-4 w-full h-full bg-black bg-opacity-50 flex justify-center items-center z-10"
       onClick={onClose}
     >
       <div
         className="w-full max-w-2xl bg-slate-900 border border-slate-800 bg-opacity-90 backdrop-blur-md rounded-lg shadow-lg px-8 py-6 z-20"
         onClick={(e) => e.stopPropagation()}
       >
-        <h1 className="text-2xl font-bold mb-4">Add Project</h1>
+        <h1 className="text-2xl font-black mb-4">Add Project</h1>
         <form onSubmit={handleSubmit} className="space-y-5">
           <Input
             type="text"
@@ -55,9 +56,9 @@ const AddProjectModal = ({ isOpen, onClose }) => {
             onChange={handleChange}
             placeholder="Project Name"
             required
-            className={`w-full bg-slate-800 hover:bg-slate-700 focus:bg-slate-700 rounded-xl p-2
-                        border border-slate-700 hover:border-slate-600 focus:border-slate-600 
-                       text-neutral-300 line-clamp-5 appearance-none focus:outline-none focus:ring-none resize-none scroll-auto `}
+            className={`w-full bg-transparent p-2 pb-1 rounded-none
+                        border-b border-slate-700 hover:border-slate-600 focus:border-slate-600 
+                       text-white text-xl font-bold line-clamp-5 appearance-none focus:outline-none focus:ring-none resize-none scroll-auto `}
           />
           <Input
             type="textarea"
@@ -68,50 +69,37 @@ const AddProjectModal = ({ isOpen, onClose }) => {
             placeholder={"Description"}
             rows={6}
             requreed={true}
-            className={`w-full bg-slate-800 hover:bg-slate-700 focus:bg-slate-700 rounded-xl p-2
+            className={`w-full bg-transparent rounded-xl p-2
                         border border-slate-700 hover:border-slate-600 focus:border-slate-600 
                        text-neutral-300 line-clamp-5 appearance-none focus:outline-none focus:ring-none resize-none scroll-auto`}
           />
-          <div className="flex items-center justify-between">
-          <div className="flex items-center">
+          <div className="flex flex-col sm:flex-row items-start justify-between space-y-2 sm:space-y-0">
             <Input
               type="radio"
               name="priority"
               id="priority"
               value={project.priority}
               onChange={handleChange}
-              placeholder="Priority"
+              text="Priority"
               requreed={true}
+              min={1}
+              max={3}
+              iText={[
+                <FaFire className="text-green-700" />,
+                Array.from({ length: 2 }, (_, index) => <FaFire key={index} className="text-orange-700" />),
+                Array.from({ length: 3 }, (_, index) => <FaFire key={index} className="text-red-700" />),
+              ]}
             />
             <Input
-              type="radio"
-              name="priority"
-              id="priority"
-              value={project.priority}
+              type="date"
+              name="dueDate"
+              id="dueDate"
+              value={project.dueDate}
               onChange={handleChange}
-              placeholder="Priority"
+              text="Due Date"
               requreed={true}
+              className="bg-transparent py-2 px-4 rounded-full border border-slate-800 hover:border-slate-700 focus:border-slate-700 focus:outline-none focus:ring-none"
             />
-            <Input
-              type="radio"
-              name="priority"
-              id="priority"
-              value={project.priority}
-              onChange={handleChange}
-              placeholder="Priority"
-              requreed={true}
-            />
-          </div>
-          <Input
-            type="date"
-            name="dueDate"
-            id="dueDate"
-            value={project.dueDate}
-            onChange={handleChange}
-            text="Due Date"
-            placeholder="Due Date"
-            requreed={true}
-          />
           </div>
 
           <div className="flex justify-end space-x-4">
@@ -127,7 +115,7 @@ const AddProjectModal = ({ isOpen, onClose }) => {
               onClick={onClose}
               className="px-4 py-2 rounded-full
                     bg-red-900 hover:opacity-90 focus:opacity-90
-                      border border-slate-900 focues:outline-none focus:ring-none"
+                      border border-slate-700 focues:outline-none focus:ring-none"
             />
           </div>
         </form>

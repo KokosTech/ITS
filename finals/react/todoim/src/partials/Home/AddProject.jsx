@@ -1,8 +1,7 @@
 import { useState } from "react";
 
 import AddProjectModal from "./AddProjectModal";
-import Button from "../../components/Button";
-
+import CreateButton from "../../components/Buttons/Create";
 
 // button to open modal
 const AddProject = () => {
@@ -12,7 +11,7 @@ const AddProject = () => {
 
   return (
     <>
-      <Button text="Add Project" onClick={handleOpen} />
+      <CreateButton onClick={handleOpen} />
       <AddProjectModal isOpen={isOpen} onClose={handleClose} />
     </>
   );

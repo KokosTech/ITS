@@ -1,3 +1,8 @@
+import { useEffect } from "react";
+import getDate from "../utils/getDate";
+import Radio from "./Inputs/Radio";
+import TextArea from "./Inputs/TextArea";
+
 const Input = ({
   type,
   name,
@@ -7,8 +12,12 @@ const Input = ({
   text,
   placeholder,
   rows,
+  min,
+  max,
+  iText,
   requreed,
   error,
+  cClassName,
   className,
 }) => {
   if (!className) {
@@ -18,31 +27,56 @@ const Input = ({
                   focus:outline-none focus:ring-none`;
   }
 
-  if (type === "textarea") {
+  useEffect(() => {
+    if (type === "date") {
+      if (!value) {
+        onChange({ target: { name, value: getDate() } });
+      }
+    }
+  }, []);
+
+  if (type === "textarea")
     return (
-      <div className="flex flex-col space-y-1">
-        {text && (
-          <label htmlFor={id} className="text-sm text-neutral-300">
-            {text}
-          </label>
-        )}
-        <textarea
-          type={type}
-          name={name}
-          id={id}
-          value={value}
-          onChange={onChange}
-          placeholder={placeholder}
-          rows={rows}
-          required={requreed}
-          className={className}
-        />
-      </div>
+      <TextArea
+        {...{
+          type,
+          name,
+          id,
+          value,
+          onChange,
+          text,
+          placeholder,
+          rows,
+          requreed,
+          error,
+          cClassName,
+          className,
+        }}
+      />
     );
-  }
+  if (type === "radio")
+    return (
+      <Radio
+        {...{
+          type,
+          name,
+          id,
+          value,
+          onChange,
+          text,
+          min,
+          max,
+          iText,
+          requreed,
+          error,
+          cClassName,
+          className,
+        }}
+      />
+    );
 
   return (
-    <div className="flex flex-col space-y-1">
+    <div className={`flex flex-col space-y-1 ${cClassName}`}>
       {text && (
         <label className="text-neutral-400" htmlFor={id}>
           {text}

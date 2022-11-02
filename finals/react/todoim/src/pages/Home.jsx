@@ -6,7 +6,7 @@ import ProjectsList from "../partials/Home/ProjectstList";
 const Home = () => {
   const { projects } = useProject();
   return (
-    <div>
+    <div className="w-full">
       <HomeHeader />
       <ProjectsList projects={projects} />
     </div>
